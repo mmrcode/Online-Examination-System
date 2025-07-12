@@ -47,42 +47,147 @@ A modern, comprehensive web-based examination system built with PHP, MySQL, and 
 - **Modern web browser** with JavaScript enabled
 - **XAMPP/WAMP** (for local development)
 
-## 📦 **Installation**
+## 📦 **Installation Guide**
 
-### 1. **Database Setup**
+### **Prerequisites**
+- **XAMPP** (Apache + MySQL + PHP) - [Download here](https://www.apachefriends.org/download.html)
+- **Git** (optional, for cloning) - [Download here](https://git-scm.com/downloads)
+- **Modern web browser** (Chrome, Firefox, Safari, Edge)
 
+### **Step 1: Download/Clone the Project**
+
+**Option A: Download ZIP**
+1. Click the green "Code" button on GitHub
+2. Select "Download ZIP"
+3. Extract to your XAMPP `htdocs` folder
+
+**Option B: Clone with Git**
 ```bash
-# Create MySQL database
-mysql -u root -p -e "CREATE DATABASE online_exam;"
+cd C:\xampp\htdocs
+git clone https://github.com/mmrcode/Online-Examination-System.git
+cd Online-Examination-System
+```
+
+### **Step 2: Start XAMPP Services**
+
+1. **Open XAMPP Control Panel**
+2. **Start Apache** (click "Start" next to Apache)
+3. **Start MySQL** (click "Start" next to MySQL)
+4. Verify both services show green status
+
+### **Step 3: Database Setup**
+
+**Method A: Using phpMyAdmin (Recommended)**
+1. Open browser and go to: `http://localhost/phpmyadmin`
+2. Click "New" to create a new database
+3. Enter database name: `online_exam`
+4. Click "Create"
+5. Select the `online_exam` database
+6. Click "Import" tab
+7. Choose file: `sql/database.sql`
+8. Click "Go" to import
+
+**Method B: Using Command Line**
+```bash
+# Open MySQL command line
+mysql -u root -p
+
+# Create database
+CREATE DATABASE online_exam;
+
+# Exit MySQL
+exit
 
 # Import schema
 mysql -u root -p online_exam < sql/database.sql
 ```
 
-### 2. **Web Server Configuration**
+### **Step 4: Configure Database Connection**
 
-1. Place project files in your web server directory (e.g., `htdocs/`)
-2. Ensure proper file permissions
-3. Configure your web server for PHP
-
-### 3. **Database Configuration**
-
-Update `db/db_connect.php` with your credentials:
+1. Open `db/db_connect.php` in your code editor
+2. Update the database credentials:
 
 ```php
 $host = 'localhost';
-$username = 'root';        // Your MySQL username
-$password = '';            // Your MySQL password
-$database = 'online_exam';
+$username = 'root';        // Default XAMPP username
+$password = '';            // Default XAMPP password (empty)
+$database = 'online_exam'; // Database name you created
 ```
 
-### 4. **Sample Data Setup**
+### **Step 5: Import Sample Data**
 
-Run the comprehensive sample data script:
+**Method A: Using Browser**
+1. Open: `http://localhost/online_exam_system/create_sample_data.php`
+2. The script will automatically create sample users and data
+3. You'll see a success message when complete
 
+**Method B: Using Command Line**
 ```bash
+cd C:\xampp\htdocs\online_exam_system
 php create_sample_data.php
 ```
+
+### **Step 6: Access the System**
+
+1. Open your web browser
+2. Navigate to: `http://localhost/online_exam_system/`
+3. You should see the modern homepage
+
+### **Step 7: Test Login**
+
+Use these default credentials to test the system:
+
+**Admin Login:**
+- Email: `admin@example.com`
+- Password: `admin123`
+
+**Teacher Login:**
+- Email: `sarah.johnson@university.edu`
+- Password: `teacher123`
+
+**Student Login:**
+- Email: `alex.johnson@student.edu`
+- Password: `student123`
+
+### **Troubleshooting Installation**
+
+| Issue | Solution |
+|-------|----------|
+| **"Database connection failed"** | Check if MySQL is running in XAMPP |
+| **"404 Not Found"** | Verify project is in `htdocs` folder |
+| **"Permission denied"** | Check file permissions on Windows |
+| **"phpMyAdmin not accessible"** | Ensure Apache is running in XAMPP |
+| **"Sample data script fails"** | Verify database exists and is accessible |
+
+### **File Permissions (Windows)**
+- Right-click project folder → Properties → Security
+- Ensure "Everyone" or your user has "Read & Execute" permissions
+- For XAMPP, usually no special permissions needed
+
+### **Alternative Setup Methods**
+
+**Using WAMP Server:**
+1. Install WAMP instead of XAMPP
+2. Follow same steps but use WAMP's `www` folder
+3. Access via `http://localhost/online_exam_system/`
+
+**Using MAMP (Mac):**
+1. Install MAMP for Mac
+2. Place project in `htdocs` folder
+3. Access via `http://localhost:8888/online_exam_system/`
+
+### **Development Environment Setup**
+
+For developers who want to modify the code:
+
+1. **Install a code editor** (VS Code, Sublime Text, etc.)
+2. **Enable PHP error reporting** in `php.ini`:
+   ```ini
+   display_errors = On
+   error_reporting = E_ALL
+   ```
+3. **Use browser developer tools** for debugging
+4. **Check browser console** for JavaScript errors
 
 ## 🔑 **Default Login Credentials**
 
@@ -199,11 +304,30 @@ online_exam_system/
 
 ## 🚀 **Quick Start**
 
-1. **Clone/Download** the project
-2. **Setup Database** using `sql/database.sql`
-3. **Configure** database connection in `db/db_connect.php`
-4. **Run Sample Data** script: `php create_sample_data.php`
-5. **Access System** at `http://localhost/online_exam_system/`
+### **For Beginners (5 minutes setup):**
+1. **Install XAMPP** from [apachefriends.org](https://www.apachefriends.org/download.html)
+2. **Download** this project and extract to `C:\xampp\htdocs\`
+3. **Start XAMPP** (Apache + MySQL)
+4. **Create database** via phpMyAdmin: `http://localhost/phpmyadmin`
+5. **Import schema** from `sql/database.sql`
+6. **Run sample data**: `http://localhost/online_exam_system/create_sample_data.php`
+7. **Access system**: `http://localhost/online_exam_system/`
+
+### **For Developers:**
+```bash
+# Clone repository
+git clone https://github.com/mmrcode/Online-Examination-System.git
+cd Online-Examination-System
+
+# Setup database
+mysql -u root -p -e "CREATE DATABASE online_exam;"
+mysql -u root -p online_exam < sql/database.sql
+
+# Run sample data
+php create_sample_data.php
+
+# Access at http://localhost/online_exam_system/
+```
 
 ## 🎯 **Usage Guide**
 
